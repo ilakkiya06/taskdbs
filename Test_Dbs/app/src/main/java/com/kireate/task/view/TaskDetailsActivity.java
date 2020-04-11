@@ -1,5 +1,6 @@
 package com.kireate.task.view;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -59,9 +61,20 @@ public class TaskDetailsActivity extends AppCompatActivity {
             if (taskDetailsResponse != null) {
                 tvDescription.setText(taskDetailsResponse.getText());
             }
-            Toast.makeText(this, "Task id:" + taskDetailsResponse.getId(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Task id:" + taskDetailsResponse.getId(), Toast.LENGTH_SHORT).show();
 
 
+
+          else{
+
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(TaskDetailsActivity.this);
+            alert.setTitle("TaskList");
+            alert.setMessage("Unable to fetch task list at this moments");
+            alert.setPositiveButton("OK", null);
+            alert.show();
+            //progressCircular.setVisibility(View.GONE);
+        }
         });
     }
 }
