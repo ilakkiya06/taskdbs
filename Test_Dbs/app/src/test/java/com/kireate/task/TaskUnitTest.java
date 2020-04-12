@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 import com.kireate.task.response.TaskListResponse;
 
 
-@RunWith(MockitoJUnitRunner.Silent.class)
+@RunWith(MockitoJUnitRunner.class)
 public class TaskUnitTest {
 
 
