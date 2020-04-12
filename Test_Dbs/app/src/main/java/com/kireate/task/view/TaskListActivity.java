@@ -78,20 +78,21 @@ public class TaskListActivity extends AppCompatActivity implements TaskItemClick
 
     private void getTaskList() {
         taskListViewModel.getTaskList().observe(this, taskList -> {
-                    if(taskList==null)
+
+                    if(taskList != null){
+                        taskResponses.addAll(taskList);
+                        progressCircular.setVisibility(View.GONE);
+                        adapter.notifyDataSetChanged();
+                    }
+                    else
                     {
                         AlertDialog.Builder alert = new AlertDialog.Builder(TaskListActivity.this);
                         alert.setTitle("TaskList");
-                        alert.setMessage("Unable to fetch task list at this moments");
+                        alert.setMessage("Unable to fetch the task list at the moments");
                         alert.setPositiveButton("OK",null);
                         alert.show();
                         progressCircular.setVisibility(View.GONE);
 
-                    }
-                    else {
-                        taskResponses.addAll(taskList);
-                        progressCircular.setVisibility(View.GONE);
-                        adapter.notifyDataSetChanged();
                     }
 
                 }
