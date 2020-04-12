@@ -45,6 +45,10 @@ public class TaskDetailsRepository {
                     Log.d(TAG, "task_id:: " + response.body().getId());
 
                 }
+
+                else {
+                    data.setValue(null);
+                }
             }
 
             @Override

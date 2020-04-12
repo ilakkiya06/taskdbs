@@ -1,5 +1,6 @@
 package com.kireate.task.view;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -8,6 +9,8 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -20,6 +23,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
     AppCompatTextView tvTitle, tvDescription;
     AppCompatImageView imageView;
+    private ProgressBar progressCircular;
     TaskDetailsViewModel taskDetailsViewModel;
 
     @Override
@@ -27,6 +31,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_details);
         init();
+        getTaskDetails();
 
     }
 
@@ -34,6 +39,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
         imageView = findViewById(R.id.imageView);
         tvDescription = findViewById(R.id.tvDescription);
+        progressCircular = findViewById(R.id.progress_circular);
 
         Intent intent = getIntent();
 
@@ -52,16 +58,24 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         taskDetailsViewModel = ViewModelProviders.of(this, new TaskViewModelFactory(this.getApplication(), String.valueOf(id))).get(TaskDetailsViewModel.class);
 
+    }
 
+    private void getTaskDetails() {
         taskDetailsViewModel.getTaskDetails().observe(this, taskDetailsResponse ->
         {
 
             if (taskDetailsResponse != null) {
                 tvDescription.setText(taskDetailsResponse.getText());
+                progressCircular.setVisibility(View.GONE);
+
+            } else {
+                AlertDialog.Builder alert = new AlertDialog.Builder(TaskDetailsActivity.this);
+                alert.setTitle("Task Details");
+                alert.setMessage("Unable to fetch the task details at the moments");
+                alert.setPositiveButton("OK", null);
+                alert.show();
+                progressCircular.setVisibility(View.GONE);
             }
-            Toast.makeText(this, "Task id:" + taskDetailsResponse.getId(), Toast.LENGTH_SHORT).show();
-
-
         });
     }
 }

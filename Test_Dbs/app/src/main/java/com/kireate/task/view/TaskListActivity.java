@@ -1,5 +1,6 @@
 package com.kireate.task.view;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -77,13 +78,22 @@ public class TaskListActivity extends AppCompatActivity implements TaskItemClick
 
     private void getTaskList() {
         taskListViewModel.getTaskList().observe(this, taskList -> {
-                    Toast.makeText(this, "Task list size:" + taskList.size(), Toast.LENGTH_SHORT).show();
 
-                    taskResponses.addAll(taskList);
-                    progressCircular.setVisibility(View.GONE);
+                    if(taskList != null){
+                        taskResponses.addAll(taskList);
+                        progressCircular.setVisibility(View.GONE);
+                        adapter.notifyDataSetChanged();
+                    }
+                    else
+                    {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(TaskListActivity.this);
+                        alert.setTitle("TaskList");
+                        alert.setMessage("Unable to fetch the task list at the moments");
+                        alert.setPositiveButton("OK",null);
+                        alert.show();
+                        progressCircular.setVisibility(View.GONE);
 
-                    adapter.notifyDataSetChanged();
-
+                    }
 
                 }
         );

@@ -43,6 +43,9 @@ public class TaskRepository {
                     data.setValue(response.body());
 
                 }
+                else {
+                    data.setValue(null);
+                }
             }
 
             @Override
