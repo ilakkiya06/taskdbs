@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.kireate.task.R;
+import com.kireate.task.response.TaskDetailsResponse;
 import com.kireate.task.view_model.TaskDetailsViewModel;
 import com.kireate.task.view_model.TaskViewModelFactory;
 
@@ -22,9 +23,11 @@ public class TaskDetailsActivity extends AppCompatActivity {
     private static final String TAG = TaskDetailsActivity.class.getSimpleName();
 
     AppCompatTextView tvTitle, tvDescription;
-    AppCompatImageView imageView;
+    AppCompatImageView imageView,editImageView;
     private ProgressBar progressCircular;
     TaskDetailsViewModel taskDetailsViewModel;
+    TaskDetailsResponse taskDetails;
+    String title = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +43,12 @@ public class TaskDetailsActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         tvDescription = findViewById(R.id.tvDescription);
         progressCircular = findViewById(R.id.progress_circular);
+        editImageView = findViewById(R.id.edit_imageView);
 
         Intent intent = getIntent();
 
-        String message = intent.getStringExtra("title_name");
-        tvTitle.setText(message);
+        title = intent.getStringExtra("title_name");
+        tvTitle.setText(title);
 
         String avatarImage = intent.getStringExtra("avatar_img");
         Glide.with(getApplicationContext())
@@ -58,6 +62,20 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         taskDetailsViewModel = ViewModelProviders.of(this, new TaskViewModelFactory(this.getApplication(), String.valueOf(id))).get(TaskDetailsViewModel.class);
 
+
+
+
+        editImageView.setOnClickListener(v -> {
+
+            if (taskDetails != null) {
+                Intent i = new Intent(TaskDetailsActivity.this, TaskEditActivity.class);
+                i.putExtra("id", taskDetails.getId());
+                i.putExtra("title", title);
+                i.putExtra("description", taskDetails.getText());
+
+                startActivity(i);
+            }
+        });
     }
 
     private void getTaskDetails() {
@@ -65,6 +83,9 @@ public class TaskDetailsActivity extends AppCompatActivity {
         {
 
             if (taskDetailsResponse != null) {
+                taskDetails = new TaskDetailsResponse();
+                taskDetails.setId(taskDetailsResponse.getId());
+                taskDetails.setText(taskDetailsResponse.getText());
                 tvDescription.setText(taskDetailsResponse.getText());
                 progressCircular.setVisibility(View.GONE);
 

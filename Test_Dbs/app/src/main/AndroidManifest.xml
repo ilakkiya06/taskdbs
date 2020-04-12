@@ -11,9 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.kireate.task.view.TaskDetailsActivity"
-            android:theme="@style/App"></activity>
-        <activity android:name="com.kireate.task.view.TaskListActivity">
+        <activity android:name=".view.TaskEditActivity"
+            android:theme="@style/AppBar">
+        </activity>
+        <activity
+            android:name=".view.TaskDetailsActivity"
+            android:theme="@style/AppBar" />
+        <activity android:name=".view.TaskListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
