@@ -3,4 +3,5 @@
     <string name="this_is_title">This is Title</string>
     <string name="this_is_date">This is Date</string>
     <string name="this_is_description">This is Description This is Description This is Description This is Description This is Description</string>
+    <string name="button_save">Save</string>
 </resources>
