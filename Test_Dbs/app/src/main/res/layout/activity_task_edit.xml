@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#FFFFFF"
+
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/toolbar_app_edit_text"/>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar">
+
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/tvDescription"
+            android:layout_marginTop="70dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:onClick="saveTask"
+        android:text="Button" />
+
+
+</RelativeLayout>

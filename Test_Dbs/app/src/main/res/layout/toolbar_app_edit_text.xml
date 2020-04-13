@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/grey">
 
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:id="@+id/tvTitle"
+        android:background="@color/white"
         android:textColor="@color/cardview_light_background"
         android:text=""/>
 
+
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/edit_imageView"
+        android:id="@+id/imageview_cancel"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="190dp"
+        android:layout_marginLeft="220dp"
 
-        android:background="@android:drawable/ic_menu_edit"/>
+        android:background="@android:drawable/ic_menu_close_clear_cancel"/>
 
 
 </androidx.appcompat.widget.Toolbar>
