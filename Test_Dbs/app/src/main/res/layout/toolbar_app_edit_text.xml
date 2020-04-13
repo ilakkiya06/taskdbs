@@ -12,7 +12,6 @@
         android:layout_marginStart="50dp"
         android:id="@+id/tvTitle"
         android:background="@color/white"
-        android:textColor="@color/cardview_light_background"
         android:text=""/>
 
 

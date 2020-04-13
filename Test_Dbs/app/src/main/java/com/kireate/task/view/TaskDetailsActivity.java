@@ -67,14 +67,13 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         editImageView.setOnClickListener(v -> {
 
-            if (taskDetails != null) {
                 Intent i = new Intent(TaskDetailsActivity.this, TaskEditActivity.class);
                 i.putExtra("id", taskDetails.getId());
                 i.putExtra("title", title);
                 i.putExtra("description", taskDetails.getText());
 
                 startActivity(i);
-            }
+
         });
     }
 

@@ -39,15 +39,14 @@ public class TaskEditActivity extends AppCompatActivity {
 
         int id = intent.getIntExtra("id", 1);
 
-        imageViewCancel.setOnClickListener(v -> startActivity(new Intent(TaskEditActivity.this,TaskDetailsActivity.class)));
+        imageViewCancel.setOnClickListener(v -> onBackPressed());
 
     }
 
 
     public void saveTask(View view){
 
-        startActivity(new Intent(TaskEditActivity.this,TaskDetailsActivity.class));
-
+        onBackPressed();
 
     }
 }
